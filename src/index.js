@@ -2,36 +2,36 @@ import './style/style.scss';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App/App';
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
+import {
+  INCREMENT_COUNT,
+  DECREMENT_COUNT,
+  RESET_COUNT,
+} from './actions/action.type';
 
 // Redux
 const state = {
   count: 0,
 };
 
-const reducer = (states = {}, action) => {
+const countReducer = (state = 0, action) => {
   switch (action.type) {
-    case 'INCREMENT_COUNT':
-      return {
-        ...states,
-        count: states.count + action.payload,
-      };
-    case 'DECREMENT_COUNT':
-      return {
-        ...state,
-        count: states.count - action.payload,
-      };
-    case 'RESET_COUNT':
-      return {
-        ...state,
-        count: action.payload,
-      };
+    case INCREMENT_COUNT:
+      return state + action.payload;
+    case DECREMENT_COUNT:
+      return state - action.payload;
+    case RESET_COUNT:
+      return action.payload;
 
     default:
-      return states;
+      return state;
   }
 };
+
+const reducer = combineReducers({
+  count: countReducer,
+});
 
 const store = createStore(reducer, state);
 
