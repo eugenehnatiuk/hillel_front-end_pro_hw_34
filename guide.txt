@@ -1,0 +1,26 @@
+"scripts": {
+    "deploy": "gh-pages -d build",
+    "sass:watch": "sass --watch src/style/style.scss:src/style/style.css",
+    "watch:client": "webpack --watch",
+    "watch:server": "nodemon server/index.mjs",
+    "serve": "webpack serve",
+    "build": "webpack",
+    "build:prod": "webpack -- --env mode=production",
+    "start": "npm-run-all --parallel watch:client watch:server"
+  },
+
+"deploy" --> переносит в отдельную ветку на gitHub папку build (там где собран проект)
+
+"sass:watch" --> отдельно следит за изменением style.scss и рендерит изменения. Использоавть можно с LiveServer, когда файлы явно подключены в index.html
+
+"watch:client" --> собирает проект и следит за всеми изменениям в src папке и пересобирает проект. Читает проект уже с build. Без back-end части. 
+
+"serve" --> альтернатива webpack --watch, так как отслеживание уже через сервер webpack. Читает проект уже с build. . Без back-end части. 
+
+"watch:server" --> nodemon следит за нашим сервером (backend) и перезапускает все изменения. Но не собирает build
+
+"build:dev и "build:prod" --> собирают проек, команда webpack собирает проект и передается аргументом среда env в которой определени mode / port и т.п.
+
+"start" --> за счет "run-all": "^1.0.1", обьеденяет скрипты watch:client и watch:server
+
+!Почему нельзя следить за сервером и webpack (serve) и нашим? -- webpack добавляет сокеты и nodemon не понимает их.

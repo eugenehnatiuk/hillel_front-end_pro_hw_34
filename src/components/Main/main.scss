@@ -1,0 +1,63 @@
+.main-section {
+  // width: 500px;
+  height: calc(100vh - 178px);
+  text-align: center;
+  font-family: 'Roboto';
+  font-size: 18px;
+
+  & h1 {
+    font-size: 24px;
+  }
+
+  & h2 {
+    font-size: 22px;
+    margin: 0 0 10px;
+  }
+  & h3 {
+    font-size: 20px;
+    margin: 0 0 10px;
+  }
+
+  &__description {
+    flex: 0 1 65%;
+    text-align: center;
+  }
+
+  &__faq {
+    margin: 0 auto;
+    width: 500px;
+  }
+
+  &__faq-list {
+    text-align: left;
+  }
+
+  &__faq-item {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__content {
+    width: 100%;
+  }
+  &__content-text {
+    text-align: justify;
+  }
+
+  &__contacts {
+    text-align: center;
+  }
+
+  &__contacts-list {
+    text-align: center;
+  }
+  &__contacts-item {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    span {
+      font-weight: 700;
+    }
+  }
+}
