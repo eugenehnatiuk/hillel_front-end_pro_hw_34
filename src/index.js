@@ -11,18 +11,20 @@ import {
 } from './actions/action.type';
 
 // Redux
+
+const INITIAL_VALUE = 0;
 const state = {
-  count: 0,
+  count: INITIAL_VALUE,
 };
 
 const countReducer = (state = 0, action) => {
   switch (action.type) {
     case INCREMENT_COUNT:
-      return state + action.payload;
+      return state + 1;
     case DECREMENT_COUNT:
-      return state - action.payload;
+      return state - 1;
     case RESET_COUNT:
-      return action.payload;
+      return INITIAL_VALUE;
 
     default:
       return state;
