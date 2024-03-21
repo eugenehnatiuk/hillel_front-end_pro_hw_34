@@ -13,8 +13,8 @@ const Counter = () => {
 
   const count = useSelector((state) => state.count);
 
-  const plus = incrementCount(1);
-  const minus = decrementCount(1);
+  const plus = incrementCount();
+  const minus = decrementCount();
   const reset = resetCount();
 
   return (

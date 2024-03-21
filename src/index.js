@@ -6,30 +6,29 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 // Redux
+const INITIAL_VALUE = 0;
+
 const state = {
-  count: 0,
+  count: INITIAL_VALUE,
 };
 
-const reducer = (states = {}, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case 'INCREMENT_COUNT':
       return {
-        ...states,
-        count: states.count + action.payload,
+        count: state.count + 1,
       };
     case 'DECREMENT_COUNT':
       return {
-        ...state,
-        count: states.count - action.payload,
+        count: state.count - 1,
       };
     case 'RESET_COUNT':
       return {
-        ...state,
-        count: action.payload,
+        count: INITIAL_VALUE,
       };
 
     default:
-      return states;
+      return state;
   }
 };
 
