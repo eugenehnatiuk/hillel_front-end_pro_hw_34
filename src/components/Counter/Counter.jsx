@@ -1,21 +1,12 @@
-import React from 'react';
 import './counter.scss';
-import {
-  resetCount,
-  decrementCount,
-  incrementCount,
-} from '../../actions/changeCount';
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { decremetn, increment, resetCount } from '../../toolkit/counterSlice';
 
 const Counter = () => {
   const dispatch = useDispatch();
-
-  const count = useSelector((state) => state.count);
-
-  const plus = incrementCount();
-  const minus = decrementCount();
-  const reset = resetCount();
+  const count = useSelector((state) => state.counter.value);
 
   return (
     <div className="main-section__counter">
@@ -24,7 +15,7 @@ const Counter = () => {
       <div className="main-section__counter-box">
         <button
           className="main-section__decrement"
-          onClick={() => dispatch(minus)}
+          onClick={() => dispatch(decremetn(1))}
         >
           -
         </button>
@@ -37,14 +28,14 @@ const Counter = () => {
         </span>
         <button
           className="main-section__increment"
-          onClick={() => dispatch(plus)}
+          onClick={() => dispatch(increment(1))}
         >
           +
         </button>
       </div>
       <button
         className="main-section__reset-btn"
-        onClick={() => dispatch(reset)}
+        onClick={() => dispatch(resetCount())}
       >
         Reset
       </button>
