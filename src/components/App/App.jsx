@@ -7,19 +7,21 @@ import {
 
 import Layout from './Layout';
 import Main from '../Main/Main';
-// import FAQ from '../FAQ/FAQ';
-// import Content from '../Content/Content';
-// import Contacts from '../Contacts/Contacts';
+const FAQ = lazy(async () => await delayForDemo(import('../FAQ/FAQ')));
+const Content = lazy(
+  async () => await delayForDemo(import('../Content/Content'))
+);
+const Contacts = lazy(
+  async () => await delayForDemo(import('../Contacts/Contacts'))
+);
 
-function delayForDemo(promise) {
-  return new Promise((resolve) => {
+async function delayForDemo(promise) {
+  await new Promise((resolve) => {
     setTimeout(resolve, 2000);
-  }).then(() => promise);
+  });
+  return promise;
 }
 
-const FAQ = lazy(() => delayForDemo(import('../FAQ/FAQ')));
-const Content = lazy(() => delayForDemo(import('../Content/Content')));
-const Contacts = lazy(() => delayForDemo(import('../Contacts/Contacts')));
 
 const router = createHashRouter([
   {
@@ -31,19 +33,16 @@ const router = createHashRouter([
         element: <Main />,
       },
       {
-        path: '/questions',
+        path: 'questions',
         element: <FAQ />,
-        // lazy: () => (import('../FAQ/FAQ')),
       },
       {
-        path: '/content',
+        path: 'content',
         element: <Content />,
-        // lazy: () => (import('../Content/Content')),
       },
       {
         path: '/contacts',
         element: <Contacts />,
-        // lazy: () => (import('../Contacts/Contacts')),
       },
       {
         path: '*',

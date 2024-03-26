@@ -2,7 +2,7 @@ import './counter.scss';
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { decremetn, increment, resetCount } from '../../toolkit/counterSlice';
+import { decrement, increment, resetCount } from '../../toolkit/counterSlice';
 
 const Counter = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Counter = () => {
       <div className="main-section__counter-box">
         <button
           className="main-section__decrement"
-          onClick={() => dispatch(decremetn(1))}
+          onClick={() => dispatch(decrement(1))}
         >
           -
         </button>
